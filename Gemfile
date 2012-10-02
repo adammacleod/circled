@@ -36,3 +36,6 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
+
+# Use therubyracer javascript runtime
+gem 'therubyracer'
