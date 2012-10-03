@@ -13,7 +13,7 @@ class LinksController < ApplicationController
   # GET /links/slug
   # GET /links/slug.json
   def show
-    @link = Link.where(:slug => params[:id]).first
+    @link = Link.find_by_slug(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -32,9 +32,9 @@ class LinksController < ApplicationController
     end
   end
 
-  # GET /links/1/edit
+  # GET /links/slug/edit
   def edit
-    @link = Link.find(params[:id])
+    @link = Link.find_by_slug(params[:id])
   end
 
   # POST /links
@@ -53,10 +53,10 @@ class LinksController < ApplicationController
     end
   end
 
-  # PUT /links/1
-  # PUT /links/1.json
+  # PUT /links/slug
+  # PUT /links/slug.json
   def update
-    @link = Link.find(params[:id])
+    @link = Link.find_by_slug(params[:id])
 
     respond_to do |format|
       if @link.update_attributes(params[:link])
@@ -69,10 +69,10 @@ class LinksController < ApplicationController
     end
   end
 
-  # DELETE /links/1
-  # DELETE /links/1.json
+  # DELETE /links/slug
+  # DELETE /links/slug.json
   def destroy
-    @link = Link.find(params[:id])
+    @link = Link.find_by_slug(params[:id])
     @link.destroy
 
     respond_to do |format|
