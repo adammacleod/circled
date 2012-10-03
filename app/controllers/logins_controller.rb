@@ -7,18 +7,10 @@ class LoginsController < ApplicationController
         format.html # show.html.erb
         format.json { render json: @links }
       else
-        redirect_to new_logins_url
+        error = 'Invalid Username or Password.'
+        format.html { render action: "new" }
+        format.json { render json: error, status: :bad_request }
       end
-    end
-  end
-
-  # GET /logins/new
-  # GET /logins/new.json
-  def new
-    respond_to do |format|
-      format.html # new.html.erb
-      # TODO: This needs work
-      format.json { render }
     end
   end
 
@@ -31,12 +23,11 @@ class LoginsController < ApplicationController
       if user && user.authenticate(params[:password])
         session[:current_user_id] = user.id
         format.html { render action: "show" }
-        format.json { render json: @user, status: :logged_in }
+        format.json { render json: @user }
       else
-      	# TODO: Display login error here
-      	format.html { render action: "create" }
-      	# TODO: @user.errors might not be appropriate, or might not exist.
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        flash[:error] = error = 'Invalid Username or Password.'
+        format.html { render action: "new" }
+        format.json { render json: error, status: :bad_request }
       end
     end
   end
