@@ -11,8 +11,8 @@
 <h1>Circled</h1>
 <hr>
 
-<% if session[:current_user_id] %>
-  <p>Welcome, number <%= session[:current_user_id] %></p>
+<% if @current_user %>
+  <p>Welcome, <%= @current_user.username %></p>
   <%= form_tag(logins_path, :method => "delete") do %>
     <div class="actions">
       <%= submit_tag("Log Out") %>
