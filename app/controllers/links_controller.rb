@@ -10,10 +10,10 @@ class LinksController < ApplicationController
     end
   end
 
-  # GET /links/1
-  # GET /links/1.json
+  # GET /links/slug
+  # GET /links/slug.json
   def show
-    @link = Link.find(params[:id])
+    @link = Link.where(:slug => params[:id]).first
 
     respond_to do |format|
       format.html # show.html.erb
