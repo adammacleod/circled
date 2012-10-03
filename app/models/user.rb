@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  # TODO: http://guides.rubyonrails.org/security.html
+
   # http://api.rubyonrails.org/classes/ActiveModel/SecurePassword/ClassMethods.html
   has_secure_password
 

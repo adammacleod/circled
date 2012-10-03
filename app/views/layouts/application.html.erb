@@ -11,6 +11,25 @@
 <h1>Circled</h1>
 <hr>
 
+<% if session[:current_user_id] %>
+  <p>Welcome, number <%= session[:current_user_id] %></p>
+  <%= form_tag(logins_path, :method => "delete") do %>
+    <div class="actions">
+      <%= submit_tag("Log Out") %>
+    </div>
+  <% end %>
+
+<% else %>
+  <p><%= link_to 'Log In', new_logins_path %></p>
+<% end %>
+
+<% if flash[:notice] %>
+  <p class="notice"><%= flash[:notice] %></p>
+<% end %>
+<% if flash[:error] %>
+  <p class="error"><%= flash[:error] %></p>
+<% end %>
+
 <%= yield %>
 
 </body>

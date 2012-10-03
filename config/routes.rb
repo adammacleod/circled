@@ -1,7 +1,7 @@
 Circled::Application.routes.draw do
   resources :users
 
-  match 'login' => 'users#login'
+  resource :logins
 
   resources :links
 
