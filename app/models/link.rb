@@ -7,6 +7,10 @@ class Link < ActiveRecord::Base
   validates :title, :presence => true,
                     :length => { :minimum => 5 }
 
+  before_validation do
+    self.slug = title.parameterize
+  end
+
   def to_param
     slug
   end
