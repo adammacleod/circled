@@ -1,5 +1,5 @@
 <script>window.location = '<%= root_url %>'; </script>
-<h1>Welcome, <%= session[:current_user_id] %>!</h1>
+<h1>Welcome, <%= @current_user.username %>!</h1>
 
 <p>We are attempting to redirect you to the home page. Please keep your hands inside the cart at all times.</p>
 
