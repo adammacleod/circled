@@ -4,15 +4,11 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    ##
-    # TODO:
-    #  - find the currently logged in user
-    #  - If there isn't one redirect to login
-    @user = User.all.first
+    @user = @current_user
 
     respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @user }
+      format.html { render action: "show" }
+      format.json { render json: @current_user }
     end
   end
 
