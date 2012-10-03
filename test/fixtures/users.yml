@@ -2,8 +2,8 @@
 
 one:
   username: MyText
-  password: MyText
+  password_digest: MyText
 
 two:
   username: MyText
-  password: MyText
+  password_digest: MyText

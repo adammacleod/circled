@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
-  attr_accessible :password, :username
+  attr_accessible :password_digest, :username
 
-  validates :password, :presence => true
+  validates :password_digest, :presence => true
   validates :username, :presence => true,
                        :length => { :minimum => 3 },
                        :uniqueness => true
