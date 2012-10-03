@@ -1,11 +1,7 @@
 Circled::Application.routes.draw do
-  get "user/register"
+  resources :users
 
-  get "user/login"
-
-  get "user/view"
-
-  get "user/edit"
+  match 'login' => 'users#login'
 
   resources :links
 
@@ -60,7 +56,7 @@ Circled::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'links#index'
 
   # See how all your routes lay out with "rake routes"
 
