@@ -37,6 +37,11 @@ class UsersController < ApplicationController
   # GET /users/username/edit
   def edit
     @user = User.find_by_username(params[:id])
+
+    # Only allow users to edit themselves
+    unless @user.id == @current_user.id
+      redirect_to @user
+    end
   end
 
   # POST /users
@@ -62,6 +67,11 @@ class UsersController < ApplicationController
   # PUT /users/username.json
   def update
     @user = User.find_by_username(params[:id])
+
+    # Only allow users to update themselves
+    unless @user.id == @current_user.id
+      redirect_to @user
+    end
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
