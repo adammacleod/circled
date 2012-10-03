@@ -1,5 +1,10 @@
 class User < ActiveRecord::Base
-  attr_accessible :password_digest, :username
+  # http://api.rubyonrails.org/classes/ActiveModel/SecurePassword/ClassMethods.html
+  has_secure_password
+
+  attr_accessible :username,
+                  :password,
+                  :password_confirmation
 
   validates :password_digest, :presence => true
   validates :username, :presence => true,
