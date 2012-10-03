@@ -1,4 +1,12 @@
 Circled::Application.routes.draw do
+  get "user/register"
+
+  get "user/login"
+
+  get "user/view"
+
+  get "user/edit"
+
   resources :links
 
   root :to => "links#index"
