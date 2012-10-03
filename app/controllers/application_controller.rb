@@ -3,6 +3,8 @@ class ApplicationController < ActionController::Base
 
   before_filter :current_user
 
+  before_filter :require_login
+
   private
 
   def logged_in?

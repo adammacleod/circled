@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
-  # GET /user
-  # GET /user.json
+  skip_before_filter :require_login, :only => [:new, :create]
+
+  # GET /users
+  # GET /users.json
   def index
     ##
     # TODO:
@@ -14,8 +16,8 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /user/username
-  # GET /user/username.json
+  # GET /users/username
+  # GET /users/username.json
   def show
     @user = User.find_by_username(params[:id])
 
@@ -25,8 +27,8 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /user/new
-  # GET /user/new.json
+  # GET /users/new
+  # GET /users/new.json
   def new
     @user = User.new
 
@@ -36,19 +38,22 @@ class UsersController < ApplicationController
     end
   end
 
-  # GET /user/username/edit
+  # GET /users/username/edit
   def edit
     @user = User.find_by_username(params[:id])
   end
 
-  # POST /user
-  # POST /user.json
+  # POST /users
+  # POST /users.json
   def create
     @user = User.new(params[:user])
 
     respond_to do |format|
       if @user.save
-        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        session[:current_user_id] = @user.id
+        current_user
+        flash[:notice] = "Your account, #{@user.username}, was successfully registered."
+        format.html { redirect_to root_url }
         format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }
@@ -57,8 +62,8 @@ class UsersController < ApplicationController
     end
   end
 
-  # PUT /user/username
-  # PUT /user/username.json
+  # PUT /users/username
+  # PUT /users/username.json
   def update
     @user = User.find_by_username(params[:id])
 
@@ -73,8 +78,8 @@ class UsersController < ApplicationController
     end
   end
 
-  # DELETE /user/username
-  # DELETE /user/username.json
+  # DELETE /users/username
+  # DELETE /users/username.json
   def destroy
     # Silly Human - Accounts can't be deleted.
     # TODO: Display a message about this, or remove it or something..

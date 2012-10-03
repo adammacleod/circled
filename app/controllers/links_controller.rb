@@ -1,4 +1,6 @@
 class LinksController < ApplicationController
+  skip_before_filter :require_login, :only => [:index, :show]
+
   # GET /links
   # GET /links.json
   def index

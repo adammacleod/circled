@@ -1,4 +1,6 @@
 class LoginsController < ApplicationController
+  skip_before_filter :require_login
+
   # GET /logins
   # GET /logins.json
   def show
