@@ -1,1 +1,5 @@
-  <%= comment.body %> - <%= comment.user.username %>
+  <tr>
+    <td><%= comment.body %></td>
+    <td><%= link_to comment.user.username, comment.user %></td>
+    <td><%= link_to comment.link.title, link_comments_path(comment.link) %>
+  </tr>

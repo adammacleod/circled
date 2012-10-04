@@ -4,6 +4,10 @@
 
 <%= render :partial => 'links/links', :locals => { :links => @user.links } %>
 
+<h2>Comments</h2>
+
+<%= render :partial => 'comments/comments', :locals => { :comments => @user.comments } %>
+
 <% if @user.id == @current_user.id %>
   <%= link_to 'Edit', edit_user_path(@user) %>
 <% end %>

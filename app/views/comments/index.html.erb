@@ -1,3 +1,7 @@
 <%= render :partial => 'links/links', :locals => { :links => [@link] } %>
 
-<%= render @link.comments %>
+<h2>Comments</h2>
+
+<%= render :partial => 'comments', :locals => { :comments => @link.comments } %>
+
+<%= render 'form' %>
