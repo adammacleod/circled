@@ -2,20 +2,7 @@
 
 <h2>Posts</h2>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Body</th>
-    <th>Link</th>
-    <th>User</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<%= render @user.links %>
-
-</table>
+<%= render :partial => 'links/links', :locals => { :links => @user.links } %>
 
 <% if @user.id == @current_user.id %>
   <%= link_to 'Edit', edit_user_path(@user) %>

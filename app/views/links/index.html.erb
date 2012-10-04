@@ -1,19 +1,6 @@
 <h1>Listing links</h1>
 
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Body</th>
-    <th>Link</th>
-    <th>Slug</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<%= render @links %>
-
-</table>
+<%= render :partial => 'links', :locals => { :links => @links } %>
 
 <br />
 
