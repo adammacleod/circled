@@ -1,13 +1,13 @@
-<h1><%= @user.username %></h1>
+<h2><%= @user.username %></h2>
 
-<h2>Posts</h2>
+<h3>Posts</h3>
 
-<%= render :partial => 'links/links', :locals => { :links => @user.links } %>
+<!--<%= render :partial => 'links/links', :locals => { :links => @user.links } %>-->
 
-<h2>Comments</h2>
+<h3>Comments</h3>
 
 <%= render :partial => 'comments/comments', :locals => { :comments => @user.comments } %>
 
-<% if @user.id == @current_user.id %>
+<% if @user == @current_user %>
   <%= link_to 'Edit', edit_user_path(@user) %>
 <% end %>

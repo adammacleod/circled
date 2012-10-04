@@ -1,9 +1,11 @@
-  <tr class="<%= link_counter % 2 == 0 ? "even" : "odd" %>">
-    <td><%= link.title %></td>
-    <td><%= link.body %></td>
-    <td><%= link.link %></td>
-    <td><%= link.user.username %></td>
-    <td><%= link_to 'Comments', link_comments_path(link) %></td>
-    <td><%= link_to 'Edit', edit_link_path(link) %></td>
-    <td><%= link_to 'Destroy', link, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+<div class="links">
+  <h2 class="link_header"><%= link_to link.title, link.link %></h2>
+  <div>
+    <%= link_to 'Comments', link_comments_path(link) %>
+    <% if link.user == @current_user %>
+      | <%= link_to 'Edit', edit_link_path(link) %>
+      | <%= link_to 'Destroy', link, method: :delete, data: { confirm: 'Are you sure?' } %>
+    <% end %>
+    | <%= link_to link.user.username, link.user %>
+  </div>
+</div>

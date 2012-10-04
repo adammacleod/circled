@@ -7,6 +7,10 @@ Circled::Application.routes.draw do
     resources :comments
   end
 
+  #resources :comments do
+  #    resources :comments
+  #end
+
   root :to => "links#index"
 
   # The priority is based upon order of creation:

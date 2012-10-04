@@ -18,7 +18,7 @@ class LinksController < ApplicationController
     @link = Link.find_by_slug(params[:id])
 
     respond_to do |format|
-      format.html # show.html.erb
+      format.html { redirect_to @link.link }
       format.json { render json: @link }
     end
   end
@@ -38,7 +38,7 @@ class LinksController < ApplicationController
   def edit
     @link = Link.find_by_slug(params[:id])
     unless @link.user == @current_user
-      redirect_to @link
+      redirect_to link_comments_url(@link)
     end
   end
 
@@ -50,8 +50,8 @@ class LinksController < ApplicationController
 
     respond_to do |format|
       if @link.save
-        format.html { redirect_to @link, notice: 'Link was successfully created.' }
-        format.json { render json: @link, status: :created, location: @link }
+        format.html { redirect_to link_comments_url(@link), notice: 'Link was successfully created.' }
+        format.json { render json: link_comments_url(@link), status: :created, location: link_comments_url(@link) }
       else
         format.html { render action: "new" }
         format.json { render json: @link.errors, status: :unprocessable_entity }
@@ -70,7 +70,7 @@ class LinksController < ApplicationController
         format.html { render action: "show" }
         format.json { head :no_content }
       elsif @link.update_attributes(params[:link])
-        format.html { redirect_to @link, notice: 'Link was successfully updated.' }
+        format.html { redirect_to link_comments_url(@link), notice: 'Link was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -86,7 +86,7 @@ class LinksController < ApplicationController
     @link.destroy
 
     respond_to do |format|
-      format.html { redirect_to links_url }
+      format.html { redirect_to root_url, notice: 'BLAM! Link was thoroughly destroyed!' }
       format.json { head :no_content }
     end
   end
