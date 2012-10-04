@@ -22,6 +22,7 @@
 <% else %>
   <p><%= link_to 'Log In', logins_path %> | <%= link_to 'Register', new_user_path %></p>
 <% end %>
+<hr>
 
 <% if flash[:notice] %>
   <p id="notice"><%= flash[:notice] %></p>
