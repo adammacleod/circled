@@ -14,10 +14,17 @@
 </p>
 
 <p>
+  <b>User:</b>
+  <%= @link.user.username %>
+</p>
+
+<p>
   <b>Slug:</b>
   <%= @link.slug %>
 </p>
 
 
-<%= link_to 'Edit', edit_link_path(@link) %> |
+<% if @link.user == @current_user %>
+  <%= link_to 'Edit', edit_link_path(@link) %> |
+<% end %>
 <%= link_to 'Back', links_path %>

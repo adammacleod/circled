@@ -37,12 +37,16 @@ class LinksController < ApplicationController
   # GET /links/slug/edit
   def edit
     @link = Link.find_by_slug(params[:id])
+    unless @link.user == @current_user
+      redirect_to @link
+    end
   end
 
   # POST /links
   # POST /links.json
   def create
     @link = Link.new(params[:link])
+    @link.user = @current_user
 
     respond_to do |format|
       if @link.save
@@ -61,7 +65,11 @@ class LinksController < ApplicationController
     @link = Link.find_by_slug(params[:id])
 
     respond_to do |format|
-      if @link.update_attributes(params[:link])
+      if @link.user != @current_user
+        flash[:error] = 'Unable to update links owned by other users.'
+        format.html { render action: "show" }
+        format.json { head :no_content }
+      elsif @link.update_attributes(params[:link])
         format.html { redirect_to @link, notice: 'Link was successfully updated.' }
         format.json { head :no_content }
       else
