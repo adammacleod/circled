@@ -2,6 +2,7 @@ class Link < ActiveRecord::Base
   attr_accessible :body, :link, :slug, :title
 
   belongs_to :user
+  has_many :comments
 
   validates :link,  :presence => true
   validates :slug,  :presence => true,
