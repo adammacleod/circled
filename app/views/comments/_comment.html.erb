@@ -1,8 +1,7 @@
   <div>
-    <strong><%= link_to comment.user.username, comment.user %></strong>
+    <span class="label label-info"><%= link_to comment.user.username, comment.user %></span>
     <p>
       <%= comment.body %><br>
       <%= link_to 'parent', link_comments_path(comment.link) %>
     </p>
-
   </div>

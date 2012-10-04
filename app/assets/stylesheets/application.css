@@ -18,3 +18,6 @@
 .link_header {
   margin-bottom: 0px;
 }
+.label a {
+  color: white !important;
+}
