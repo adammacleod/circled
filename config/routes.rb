@@ -3,7 +3,9 @@ Circled::Application.routes.draw do
 
   resource :logins
 
-  resources :links
+  resources :links do
+    resources :comments
+  end
 
   root :to => "links#index"
 
