@@ -4,6 +4,8 @@ class User < ActiveRecord::Base
   # http://api.rubyonrails.org/classes/ActiveModel/SecurePassword/ClassMethods.html
   has_secure_password
 
+  has_many :links
+
   attr_accessible :username,
                   :password,
                   :password_confirmation
