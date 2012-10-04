@@ -4,7 +4,7 @@ class LinksController < ApplicationController
   # GET /links
   # GET /links.json
   def index
-    @links = Link.all
+    @links = Link.all.reverse
 
     respond_to do |format|
       format.html # index.html.erb
@@ -83,6 +83,9 @@ class LinksController < ApplicationController
   # DELETE /links/slug.json
   def destroy
     @link = Link.find_by_slug(params[:id])
+    @link.comments.each do |c|
+      c.destroy
+    end
     @link.destroy
 
     respond_to do |format|
