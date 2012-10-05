@@ -25,7 +25,7 @@ class CommentsController < ApplicationController
   # GET /links/:link_id/comments/new
   # GET /links/:link_id/comments/new.json
   def new
-    @comment = @link.comments.create()
+    @comment = @link.comments.build()
     @comment.user = @current_user
 
     respond_to do |format|
