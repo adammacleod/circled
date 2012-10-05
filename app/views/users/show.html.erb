@@ -2,11 +2,11 @@
 
 <h3>Posts</h3>
 
-<%= render :partial => 'links/links', :locals => { :links => @user.links.reverse } %>
+<%= render @user.links.reverse %>
 
 <h3>Comments</h3>
 
-<%= render :partial => 'comments/comments', :locals => { :comments => @user.comments } %>
+<%= render @user.comments %>
 
 <% if @user == @current_user %>
   <%= link_to 'Edit', edit_user_path(@user) %>

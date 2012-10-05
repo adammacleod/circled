@@ -1,10 +1,10 @@
-<%= render :partial => 'links/links', :locals => { :links => [@link] } %>
+<%= render @link %>
 
 <p><%= @link.body %></p>
 
 <h3>Comments</h3>
 
-<%= render :partial => 'comments', :locals => { :comments => @comments } %>
+<%= render @comments %>
 
 <% if @current_user %>
   <hr>

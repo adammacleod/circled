@@ -4,20 +4,12 @@ Circled::Application.routes.draw do
   resource :logins
 
   resources :links do
-    resources :comments do
-      member do
-        post 'reply'
-      end
-    end
+    resources :comments
     member do
       post 'upvote'
       post 'downvote'
     end
   end
-
-  #resources :comments do
-  #    resources :comments
-  #end
 
   root :to => "links#index"
 

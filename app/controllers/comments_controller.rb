@@ -1,10 +1,10 @@
 class CommentsController < ApplicationController
   skip_before_filter :require_login, :only => [:index, :show]
+  before_filter :load_link
 
   # GET /links/:link_id/comments
   # GET /links/:link_id/comments.json
   def index
-    @link = Link.find_by_slug(params[:link_id])
     @comments = @link.comments.where(:comment_id => nil)
 
     respond_to do |format|
@@ -16,8 +16,6 @@ class CommentsController < ApplicationController
   # GET /links/:link_id/comments/id
   # GET /links/:link_id/comments/id.json
   def show
-    @link = Link.find_by_slug(params[:link_id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @link }
@@ -27,7 +25,6 @@ class CommentsController < ApplicationController
   # GET /links/:link_id/comments/new
   # GET /links/:link_id/comments/new.json
   def new
-    @link = Link.find_by_slug(params[:link_id])
     @comment = @link.comments.create()
     @comment.user = @current_user
 
@@ -45,8 +42,7 @@ class CommentsController < ApplicationController
   # POST /links/:link_id/comments
   # POST /links/:link_id/comments.json
   def create
-    @link = Link.find_by_slug(params[:link_id])
-    @comment = @link.comments.create(params[:comment])
+    @comment = @link.comments.build(params[:comment])
     @comment.user = @current_user
 
     respond_to do |format|
@@ -72,13 +68,7 @@ class CommentsController < ApplicationController
     redirect_to Comment.find_by_id(params[:id])
   end
 
-  # POST /links/:link_id/comments/:id/reply
-  def reply
-    @parent = Comment.find_by_id(params[:id])
-    @comment = @parent.comments.create(params[:comment])
-    @comment.user = @current_user
-    @comment.link = @parent.link
-    @comment.save
-    head :created
+  def load_link
+    @link = Link.find_by_slug(params[:link_id])
   end
 end
