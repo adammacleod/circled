@@ -93,4 +93,30 @@ class LinksController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  # POST /links/slug/upvote.json
+  def upvote
+    # This will fail BADLY if two people vote at the exact same time.
+    # This should really be a SQL statement that gets executed atomically.
+    @link = Link.find_by_slug(params[:id])
+    @link.score += 1
+    @link.save
+
+    respond_to do |format|
+      format.js { render "vote" }
+    end
+  end
+
+  # POST /links/slug/downvote.json
+  def downvote
+    # This will fail BADLY if two people vote at the exact same time.
+    # This should really be a SQL statement that gets executed atomically.
+    @link = Link.find_by_slug(params[:id])
+    @link.score -= 1
+    @link.save
+
+    respond_to do |format|
+      format.js { render "vote" }
+    end
+  end
 end

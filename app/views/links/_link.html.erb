@@ -1,5 +1,14 @@
 <div class="links">
-  <h2 class="link_header"><%= link_to link.title, link.link %></h2>
+  <h2 class="link_header">
+    <small>
+      <span id="score_<%= link.slug %>">
+        <%= link.score %>
+      </span>
+      <%= link_to raw("&uarr;"), upvote_link_path(link), { :remote => true, :method => 'post' } %>
+      <%= link_to raw("&darr;"), downvote_link_path(link), { :remote => true, :method => 'post' } %>
+    </small>
+    <%= link_to link.title, link.link %>
+  </h2>
   <div>
     <%= link_to 'Comments', link_comments_path(link) %>
     <% if link.user == @current_user %>

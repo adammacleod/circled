@@ -1,5 +1,5 @@
 class Link < ActiveRecord::Base
-  attr_accessible :body, :link, :slug, :title
+  attr_accessible :body, :link, :slug, :title, :score
 
   belongs_to :user
   has_many :comments
