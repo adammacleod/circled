@@ -4,8 +4,7 @@
       <span id="score_<%= link.slug %>">
         <%= link.score %>
       </span>
-      <%= link_to raw("&uarr;"), upvote_link_path(link), { :remote => true, :method => 'post' } %>
-      <%= link_to raw("&darr;"), downvote_link_path(link), { :remote => true, :method => 'post' } %>
+      <%= link_to raw("&uarr;"), upvote_link_path(link), { :remote => true, :method => 'post' } %><%= link_to raw("&darr;"), downvote_link_path(link), { :remote => true, :method => 'post' } %>
     </small>
     <%= link_to link.title, link.link %>
   </h2>

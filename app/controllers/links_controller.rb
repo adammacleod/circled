@@ -94,7 +94,7 @@ class LinksController < ApplicationController
     end
   end
 
-  # POST /links/slug/upvote.json
+  # POST /links/slug/upvote
   def upvote
     # This will fail BADLY if two people vote at the exact same time.
     # This should really be a SQL statement that gets executed atomically.
@@ -107,7 +107,7 @@ class LinksController < ApplicationController
     end
   end
 
-  # POST /links/slug/downvote.json
+  # POST /links/slug/downvote
   def downvote
     # This will fail BADLY if two people vote at the exact same time.
     # This should really be a SQL statement that gets executed atomically.
