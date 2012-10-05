@@ -9,7 +9,7 @@
     <%= link_to link.title, link.link %>
   </h2>
   <div>
-    <%= link_to 'Comments', link_comments_path(link) %>
+    <%= link_to "#{link.comments.length} Comments", link_comments_path(link) %>
     <% if link.user == @current_user %>
       | <%= link_to 'Edit', edit_link_path(link) %>
       | <%= link_to 'Destroy', link, method: :delete, data: { confirm: 'Are you sure?' } %>

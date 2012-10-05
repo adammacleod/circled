@@ -3,5 +3,6 @@
     <p>
       <%= comment.body %><br>
       <%= link_to 'parent', link_comments_path(comment.link) %>
+      | <%= time_ago_in_words(comment.created_at) %>
     </p>
   </div>
