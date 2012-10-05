@@ -21,3 +21,7 @@
 .label a {
   color: white !important;
 }
+textarea {
+  width: 100% !important;
+  height: 10em !important;
+}

@@ -4,7 +4,7 @@ class LinksController < ApplicationController
   # GET /links
   # GET /links.json
   def index
-    @links = Link.all.reverse
+    @links = Link.order("score DESC")
 
     respond_to do |format|
       format.html # index.html.erb

@@ -15,5 +15,6 @@
       | <%= link_to 'Destroy', link, method: :delete, data: { confirm: 'Are you sure?' } %>
     <% end %>
     | <span class="label label-info"><%= link_to link.user.username, link.user %></span>
+    | <%= time_ago_in_words(link.created_at) %>
   </div>
 </div>
