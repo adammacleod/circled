@@ -4,7 +4,11 @@ Circled::Application.routes.draw do
   resource :logins
 
   resources :links do
-    resources :comments
+    resources :comments do
+      member do
+        post 'reply'
+      end
+    end
     member do
       post 'upvote'
       post 'downvote'

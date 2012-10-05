@@ -8,7 +8,7 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html { render action: "show" }
-      format.json { render json: @current_user }
+      format.json { render json: @user }
     end
   end
 
@@ -16,6 +16,7 @@ class UsersController < ApplicationController
   # GET /users/username.json
   def show
     @user = User.find_by_username(params[:id])
+    @no_replies = true
 
     respond_to do |format|
       format.html # show.html.erb

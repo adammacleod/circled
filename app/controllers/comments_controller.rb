@@ -5,6 +5,7 @@ class CommentsController < ApplicationController
   # GET /links/:link_id/comments.json
   def index
     @link = Link.find_by_slug(params[:link_id])
+    @comments = @link.comments.where(:comment_id => nil)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -69,5 +70,15 @@ class CommentsController < ApplicationController
   # DELETE /links/:link_id/comments/id.json
   def destroy
     redirect_to Comment.find_by_id(params[:id])
+  end
+
+  # POST /links/:link_id/comments/:id/reply
+  def reply
+    @parent = Comment.find_by_id(params[:id])
+    @comment = @parent.comments.create(params[:comment])
+    @comment.user = @current_user
+    @comment.link = @parent.link
+    @comment.save
+    head :created
   end
 end
