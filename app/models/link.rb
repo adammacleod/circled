@@ -13,6 +13,11 @@ class Link < ActiveRecord::Base
 
   before_validation do
     self.slug = title.parameterize
+
+    # Check that links begin with http
+    unless self.link =~ %r!^https?://!
+      self.link = "http://#{self.link}"
+    end
   end
 
   def to_param
