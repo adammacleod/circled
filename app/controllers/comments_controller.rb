@@ -5,7 +5,8 @@ class CommentsController < ApplicationController
   # GET /links/:link_id/comments
   # GET /links/:link_id/comments.json
   def index
-    @comments = @link.comments.where(:comment_id => nil)
+    @comments = @link.comments.arrange(:order => :created_at)
+    @comment = Comment.new()
 
     respond_to do |format|
       format.html # index.html.erb
@@ -25,11 +26,11 @@ class CommentsController < ApplicationController
   # GET /links/:link_id/comments/new
   # GET /links/:link_id/comments/new.json
   def new
-    @comment = @link.comments.build()
-    @comment.user = @current_user
+    @comment = Comment.new(:parent_id => params[:parent_id])
 
     respond_to do |format|
       format.html # new.html.erb
+      format.js
       format.json { render json: @comment }
     end
   end

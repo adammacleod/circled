@@ -1,11 +1,10 @@
 class Comment < ActiveRecord::Base
+  has_ancestry
+
   belongs_to :user
   belongs_to :link
 
-  belongs_to :comment
-  has_many :comments
-
-  attr_accessible :body
+  attr_accessible :body, :parent_id
 
   validates :body, :presence => true
   validates :user, :presence => true

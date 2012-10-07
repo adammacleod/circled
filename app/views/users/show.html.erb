@@ -6,7 +6,7 @@
 
 <h3>Comments</h3>
 
-<%= render @user.comments %>
+<%= render @user.comments.reverse %>
 
 <% if @user == @current_user %>
   <%= link_to 'Edit', edit_user_path(@user) %>
